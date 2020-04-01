@@ -21,6 +21,9 @@
     height: 100%;
     padding: 1px;
 
+    /*background-image: url('assets/photo_2020-04-01_18-51-27.jpg');
+    background-size: contain;*/
+
     cursor: pointer;
 }
 

@@ -5,7 +5,7 @@
 
     let toSuffle = (arr) => {
         let random, swap;
-        for (let i = arr.length  - 1; i >= 0; i--) {
+        for (let i = arr.length - 1; i >= 0; i--) {
             random = Math.floor(Math.random() * (i + 1))
             swap = arr[random];
             arr[random] = arr[i];
@@ -13,7 +13,7 @@
         }
     }
 
-    let renderCells = ()=> {
+    let renderCells = () => {
         let cellsArr = [];
 
         for (let i = 1; i < currentSide * currentSide; i++) {
@@ -59,13 +59,13 @@
             }
         }
 
-        stepLeft = cells[labelIndex - 1];
-        stepRight = cells[labelIndex + 1];
-        stepUp = cells[labelIndex - 4];
-        stepDown = cells[labelIndex + 4];
+        stepLeft = labelIndex - 1;
+        stepRight = labelIndex + 1;
+        stepUp = labelIndex - 4;
+        stepDown = labelIndex + 4;
 
-        for (let i = 0; i < cells.length; i++) {  //в этом цикле я проверяю, не находится ли свободная хрень с боку сетки
-            if (i % currentSide === 0) { 
+        for (let i = 0; i < cells.length; i++) { //в этом цикле я проверяю, не находится ли свободная хрень с боку сетки
+            if (i % currentSide === 0) {
                 if (labelIndex === i) {
                     stepLeft = null;
                 }
@@ -83,8 +83,6 @@
         resArr.push(stepUp);
         resArr.push(stepDown);
 
-        console.log(labelIndex);
-
         return {
             resArr: resArr,
             labelIndex: labelIndex
@@ -96,13 +94,12 @@
         let cellsArr = document.querySelectorAll('.cell');
         let checkResult = checkMoveAvilability();
 
-        //console.log(cellsArr);
-
         checkResult.resArr.forEach((it, i, arr) => {
-            console.log(arr[i]);
-            if (evt.target === it) {
-                let swap = 1;
-                freeSpaceElement = ;
+            if (evt.target === cellsArr[it]) {
+                console.log(it);
+                freeSpaceElement.after(cellsArr[it]);
+                cellsArr[it + 1].before(freeSpaceElement);
+                
             }
         })
     }
@@ -125,7 +122,7 @@
     document.querySelector('.game-container').addEventListener('click', toMoveCell);
 
     inputField.addEventListener('click', toChangeCurrentSide);
-}) ()
+})()
 
 
 //toMoveCell();
